@@ -1,11 +1,10 @@
 <script>
 import AppNavigation from '@/components/layouts/AppNavigation.vue'
 import { defineComponent } from 'vue'
-import BoardList from '@/components/BoardList.vue'
 import BoardDetail from '@/components/BoardDetail.vue'
 
 export default defineComponent({
-  components: { BoardDetail, BoardList, AppNavigation },
+  components: { BoardDetail, AppNavigation },
 })
 </script>
 <template>

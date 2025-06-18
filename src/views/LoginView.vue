@@ -16,36 +16,42 @@ async function handleLogin() {
 </script>
 
 <template>
+  <section class="min-h-screen flex flex-col items-center justify-center bg-stone-100 px-4 background">
 
-  <section class="flex justify-center items-center h-full">
+      <h1 class="text-4xl font-bold leading-tight my-4 text-center">
+        Welcome back to <span class="text-blue-950">MoodCloud</span>.
+      </h1>
+<!--      <img src="../../src/assets/img/loginImage.jpeg" class="w-9/12 h-full object-cover" />-->
+      <!-- RIGHT: Login Form -->
+      <div class="bg-white backdrop-blur-sm border border-[#EADDC8]/20 text-black shadow-xl rounded-2xl p-8 w-full max-w-md">
+        <h2 class="text-2xl font-semibold mb-6">Log in</h2>
 
-    <!-- https://daisyui.com/components/card/ -->
-    <div class="card w-96 bg-base-100 shadow-xl mt-20 mb-20">
-      <figure>
-      </figure>
-      <div class="card-body">
-        <h2 class="card-title text-2xl font-bold">Login to see the fun</h2>
-        <div class="flex items-center flex-col gap-2 mt-2 w-full">
+        <label class="block mb-4">
+          <span class="text-sm mb-1 block">Email</span>
+          <input v-model="email" type="email" placeholder="you@example.com"
+                 class="input input-bordered w-full  text-blue-950 border-[#EADDC8]/40 placeholder:text-stone-500" />
+        </label>
 
-          <label class="input validator w-full">
-            <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></g></svg>
-            <input v-model="email" type="email" required placeholder="Username" pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3" maxlength="30" title="Only letters, numbers or dash" />
-          </label>
+        <label class="block mb-6">
+          <span class="text-sm mb-1 block">Password</span>
+          <input v-model="password" type="password" placeholder="••••••••"
+                 class="input input-bordered w-full  text-blue-950 border-[#EADDC8]/40 placeholder:text-stone-500" />
+        </label>
 
-          <label class="input validator w-full">
-            <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle></g></svg>
-            <input v-model="password" @keydown.enter="handleLogin" type="password" required placeholder="Password" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" />
-          </label>
-        </div>
-        <div class="card-actions justify-center">
-            <button class="btn btn-active btn-primary w-full" @click="handleLogin" v-bind:disabled="!email || !password">Login</button>
-        </div>
+        <button class="btn w-full btn-primary hover:bg-blue-950" @click="handleLogin">
+          Log In
+        </button>
       </div>
-    </div>
   </section>
-
 </template>
 
-<style>
-
+<style scoped>
+.background {
+  background-image: url('/src/assets/img/clouds2.png');
+  background-color: rgba(174, 162, 149, 0.3); /* leichter, beiger Overlay */
+  background-blend-mode: lighten;
+  background-size: contain;
+  background-repeat: repeat;
+  min-height: 100vh;
+}
 </style>

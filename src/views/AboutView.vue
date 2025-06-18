@@ -1,22 +1,40 @@
 <template>
   <AppNavigation>
-    <div class="w-9/12 m-auto mt-6">
-      <h1 class="text-3xl mb-4">Über Dreamnest</h1>
-      <p>
-        Willkommen bei Dreamnest – deinem digitalen Raum für Träume, Visionen und kreative Ideen.
+    <section class="w-full max-w-4xl mx-auto px-4 py-10  ">
+      <div class="space-y-6">
+        <h1 class="text-center text-4xl pt-10 pb-2r">
+          Über MoodCloud
+        </h1>
 
-        Ob du Designer:in, Künstler:in oder einfach ein visuell denkender Mensch bist: Mit Dreamnest kannst du Moodboards erstellen, die genauso individuell sind wie deine Gedanken. Sammle Bilder, Farben, Texte, Musik oder sogar Emojis – alles an einem Ort, frei platzierbar, so wie du es brauchst.
+        <p class=" leading-relaxed">
+          <strong>MoodCloud</strong> ist deine kreative Plattform für visuelles Denken, Moodboards und kollaborative Ideenfindung.
+        </p>
 
-        Dreamnest ist mehr als nur ein Moodboard-Tool. Es ist dein visuelles Tagebuch, dein Ideen-Speicher, dein kreativer Zufluchtsort. Egal ob du an einem Tattoo-Konzept arbeitest, eine Modestrecke planst oder einfach nur deine Ästhetik festhalten willst – hier bekommst du den Raum dafür.
+        <p class=" leading-relaxed">
+          Egal ob du Designer:in, Künstler:in, Content Creator oder einfach ein visuell inspirierter Mensch bist – MoodCloud hilft dir, deine Eindrücke, Konzepte und Stimmungen festzuhalten.
+        </p>
 
-        Dein Nest für visuelle Träume.
-        Ganz du. Ganz frei.</p>
-    </div>
+        <p class=" leading-relaxed">
+          Sammle Bilder, Farben, Texte, Musik oder Emojis – und ordne sie so an, wie es zu deinem Stil passt. Kein Raster, keine Grenzen – nur Raum für deine Ideen.
+        </p>
+
+
+        <p class=" leading-relaxed">
+          Plane Projekte, entwickle Konzepte oder halte einfach deine kreative Stimmung fest. Mit MoodCloud hast du volle Freiheit und volle Kontrolle – egal ob allein oder im Team.
+        </p>
+
+        <p class="text-lg leading-relaxed font-semibold text-center text-blue-900 mt-10">
+          Visual thinking. Effortless. Flexibel. Kreativ.
+          <br><span class="text-4xl">☁️☁️☁️</span>
+        </p>
+      </div>
+    </section>
   </AppNavigation>
 </template>
 
-<style>
+<style scoped>
 </style>
+
 <script setup lang="ts">
 import AppNavigation from '@/components/layouts/AppNavigation.vue'
 </script>

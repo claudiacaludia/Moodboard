@@ -1,6 +1,5 @@
 <script setup>
-
-import {ref, watch} from "vue";
+import { ref, watch, onMounted } from "vue";
 
 const props = defineProps({
   showOpenBtn: {
@@ -30,6 +29,14 @@ function handleOpen() {
   emit('open');
 }
 
+function handleOutsideClick(event) {
+  // Schließt das Modal nur, wenn außerhalb der modal-box geklickt wurde
+  if (event.target === dialog.value) {
+    dialog.value.close();
+    emit('close');
+  }
+}
+
 watch(() => props.open, () => {
   if (props.open) {
     handleOpen();
@@ -37,20 +44,16 @@ watch(() => props.open, () => {
     dialog.value?.close();
   }
 });
-
 </script>
 
 <template>
-
-  <!-- https://daisyui.com/components/modal/#dialog-modal-with-a-close-button-at-corner -->
-
   <button v-if="showOpenBtn" :class="btnClass" @click="handleOpen">
     <slot name="openBtn">
       {{ btnText }}
     </slot>
   </button>
 
-  <dialog ref="dialog" class="modal" @close="emit('close')">
+  <dialog ref="dialog" class="modal" @click="handleOutsideClick" @close="emit('close')">
     <div class="modal-box">
       <slot name="closeBtn">
         <form method="dialog">
@@ -59,13 +62,8 @@ watch(() => props.open, () => {
       </slot>
       <slot>
         <h3 class="text-lg font-bold">Hello!</h3>
-        <p class="py-4">Press ESC key or click on ✕ button to close</p>
+        <p class="py-4">Press ESC key, ✕ button, or click outside to close</p>
       </slot>
     </div>
   </dialog>
-
 </template>
-
-<style scoped>
-
-</style>

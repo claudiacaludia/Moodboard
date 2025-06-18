@@ -59,8 +59,7 @@ function handleSetBoard(boardId) {
           </li>
         </ul>
       </div>
-      <img src="../assets/img/logo.png" alt="logo dreamnest" class="w-12 h-12 mx-4">
-<!--      <p>Dreamnest</p>-->
+      <p class="text-blue-950 logo">MoodCloud</p>
       <p></p>
     </div>
     <div class="navbar-center hidden lg:flex">
@@ -68,16 +67,16 @@ function handleSetBoard(boardId) {
         <li><a @click="router.push('/about');">About</a></li>
         <li>
           <details>
-            <summary @click="router.push('/home');">Moodboards</summary>
+            <summary @click="router.push('/home');">MoodClouds</summary>
             <ul class="p-2 z-10">
               <BoardListItem v-for="board in boards" :key="board.id" :board="board" @click="handleSetBoard(board.id)"/>
             </ul>
           </details>
         </li>
-        <Modal btnClass="btn btn-sm" btnText="Creat new board">
+        <Modal btnClass="btn btn-sm" btnText="Creat new cloud">
           <div class="flex flex-col gap-5">
             <h2 class="text-lg font-bold">
-              Creat Moodboard
+              Creat MoodCloud
             </h2>
 
             <label class="floating-label w-full">
@@ -85,7 +84,7 @@ function handleSetBoard(boardId) {
               <input v-model="newBoardName" type="text" placeholder="Board Name" class="input input-sm w-full"/>
             </label>
 
-            <button class="btn btn-primary" @click="handelCreatBoard">Create new Board</button>
+            <button class="btn btn-primary" @click="handelCreatBoard">Create new Cloud</button>
           </div>
         </Modal>
       </ul>
@@ -97,5 +96,27 @@ function handleSetBoard(boardId) {
 </template>
 
 <style scoped>
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.logo::marker {
+  content: '';
+}
+
+.logo::before {
+  content: "☁️";
+  font-size: 1.5rem;
+}
+
 
 </style>

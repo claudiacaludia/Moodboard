@@ -12,7 +12,7 @@ import Navbar from "@/components/Navbar.vue";
     </slot>
   </header>
 
-  <main class="">
+  <main class="background">
     <div class="pt-0 min-h-screen">
       <div class=" h-full">
         <slot>
@@ -30,5 +30,12 @@ import Navbar from "@/components/Navbar.vue";
 </template>
 
 <style scoped>
-
+.background {
+  background-image: url('/src/assets/img/clouds2.png');
+  background-color: rgba(174, 162, 149, 0.3); /* leichter, beiger Overlay */
+  background-blend-mode: lighten;
+  background-size: contain;
+  background-repeat: repeat;
+  min-height: 100vh;
+}
 </style>

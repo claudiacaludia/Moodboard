@@ -71,7 +71,7 @@ function handleAddNewElement() {
       <h1 class="text-center text-4xl pt-10 pb-2">{{ currentBoard.title }}</h1>
       <Modal btnClass="btn btn-secondary rounded-full w-12 h-12 text-2xl" btnText="+">
         <div class="flex flex-col gap-5">
-          <h2 class="text-lg font-bold">Create board</h2>
+          <h2 class="text-lg font-bold">Create new element</h2>
 
           <label class="w-full input">
             <span class="label">x Position</span>
@@ -160,7 +160,7 @@ function handleAddNewElement() {
             />
           </label>
 
-          <button class="btn btn-secondary" @click="handleAddNewElement">Create Chat</button>
+          <button class="btn btn-secondary" @click="handleAddNewElement">Create Element</button>
         </div>
       </Modal>
     </div>
