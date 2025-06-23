@@ -9,8 +9,7 @@ export default defineComponent({
 </script>
 <template>
   <AppNavigation>
-    <div class="">
-<!--      <BoardList></BoardList>-->
+    <div>
       <BoardDetail></BoardDetail>
     </div>
   </AppNavigation>

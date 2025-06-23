@@ -1,16 +1,14 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import Modal from '@/components/Modal.vue'
-//import { useLogin } from '@/useLogin.js'
 import BoardListItem from '@/components/BoardListItem.vue'
 import { useBoards } from '@/useBoards.js'
 import { useRouter } from 'vue-router'
-//const {currentUser} = useLogin();
 const {fetchBoards, boards, setBoard, createBoard} = useBoards();
 const router = useRouter();
 
 const newBoardName = ref('');
-//TODO: Modal/Dropdown schließen bei klick außerhalb
+//TODO: Dropdown schließen bei klick außerhalb
 
 onMounted(() => {
   fetchBoards();
@@ -32,13 +30,6 @@ function handleSetBoard(boardId) {
 </script>
 
 <template>
-<!--  <div class="navbar flex justify-between bg-stone-200 py-6">
-&lt;!&ndash;    <h1>Hallo {{currentUser?.name}} </h1>&ndash;&gt;
-    <h2 class="text-blue-950 font-bold">Dreamnest</h2>
-    <img src="../assets/img/logo.png" class="w-16 h-16">
-
-    <RouterLink @click="logout" to="/" class="btn btn-outline btn-primary">Logout</RouterLink>
-  </div>-->
 
 
   <div class="navbar bg-base-100 shadow-sm text-blue-950">
@@ -52,14 +43,14 @@ function handleSetBoard(boardId) {
           class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
           <li><a @click="router.push('/about');">About</a></li>
           <li>
-            <a @click="router.push('/home');">Moodboards</a>
+            <a @click="router.push('/home');">☁️ Moodboards</a>
             <ul class="p-2 z-10">
               <BoardListItem v-for="board in boards" :key="board.id" :board="board" @click="handleSetBoard(board.id)"/>
             </ul>
           </li>
         </ul>
       </div>
-      <p class="text-blue-950 logo">MoodCloud</p>
+      <p class="text-blue-950 text-2xl font-bold padding-3 display-inline-flex align-center gap-2">☁️ MoodCloud</p>
       <p></p>
     </div>
     <div class="navbar-center hidden lg:flex">
@@ -94,29 +85,3 @@ function handleSetBoard(boardId) {
     </div>
   </div>
 </template>
-
-<style scoped>
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.375rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  user-select: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.logo::marker {
-  content: '';
-}
-
-.logo::before {
-  content: "☁️";
-  font-size: 1.5rem;
-}
-
-
-</style>

@@ -1,9 +1,10 @@
 import {computed, readonly, ref} from "vue";
 import {pb} from '@/pocketbase.js'
-
+import { useBoards } from '@/useBoards.js'
 // Make variable Singleton to not create multiple storages for currentUser
 // Move it out of the scope of the composable to make it a singleton automatically based on JS import/export
 const currentUser = ref(null);
+const {resetBoard} = useBoards();
 
 // Check if the user is still logged in through pb.authStore / token saved in localStorage
 // If yes set the saved user to be the current user
@@ -19,9 +20,11 @@ export function useLogin() {
             email,
             password,
         );
-        currentUser.value = data.record;
+        resetBoard();
+        localStorage.removeItem('currentBoard');
         console.log('User logged in', currentUser.value);
     }
+
 
     const logout = () => {
         currentUser.value = null;

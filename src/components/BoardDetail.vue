@@ -4,12 +4,14 @@ import ElementItems from '@/components/ElementItems.vue'
 import { useLogin } from '@/useLogin.js'
 import { ref } from 'vue'
 import Modal from '@/components/Modal.vue'
+import { useElements } from '@/useElements.js'
 
-const {currentBoard, elements, createElement} = useBoards();
+const {currentBoard} = useBoards();
+const {elements, createElement} = useElements();
 const {currentUser} = useLogin();
 
-const xPos = ref('');
-const yPos = ref('');
+const xPos = ref('200');
+const yPos = ref('200');
 const height = ref('');
 const width = ref('');
 const elementType = ref('');
@@ -20,8 +22,11 @@ const newImageInput = ref(null);
 const imageUrl = ref('');
 let image = '';
 function handleAddNewElement() {
-  if(!xPos.value || !yPos.value || !elementType.value) {
-    alert('xPos, yPos and Element Type must be filled in!');
+  xPos.value = 450;
+  yPos.value = 220;
+
+  if( !elementType.value) {
+    alert('Element Type must be filled in!');
     return
   }
   if(newImageInput.value) {
@@ -48,8 +53,6 @@ function handleAddNewElement() {
 
   createElement(xPos.value, yPos.value, height.value, width.value, elementType.value,
     elementText.value, elementColor.value, elementSong.value,  image, imageUrl.value);
-    xPos.value = '';
-    yPos.value = '';
     elementType.value = '';
     height.value = '';
     width.value = '';
@@ -63,8 +66,9 @@ function handleAddNewElement() {
 </script>
 
 <template>
-  <div v-if="!currentBoard" class="bg-stone-100">
-    <p>Wähle ein Board aus</p>
+  <div v-if="!currentBoard" class="">
+    <h2 class="text-4xl text-center py-12 text-blue-950 font-bold">No MoodCloud selected ☁️</h2>
+    <p class="text-center pb-12">Please select on of your boards or creat a new one</p>
   </div>
   <div v-if="currentBoard" class="w-full bg-stone-100">
     <div class="flex justify-center align-middle items-center flex-col">
@@ -73,14 +77,6 @@ function handleAddNewElement() {
         <div class="flex flex-col gap-5">
           <h2 class="text-lg font-bold">Create new element</h2>
 
-          <label class="w-full input">
-            <span class="label">x Position</span>
-            <input v-model="xPos" type="text" placeholder="240" class=" input-sm w-full" />
-          </label>
-          <label class="w-full input">
-            <span class="label">y Position</span>
-            <input v-model="yPos" type="text" placeholder="240" class=" input-sm w-full" />
-          </label>
           <label class="w-full input">
             <span class="label">Type</span>
             <input
@@ -91,14 +87,12 @@ function handleAddNewElement() {
             />
           </label>
 
-          <!-- Height -->
           <label v-if="elementType === 'image' || elementType === 'color'" class="w-full input">
             <span class="label">Height</span>
             <input v-model="height" type="text" placeholder="100" class="" />
             <span class="label">px</span>
           </label>
 
-          <!-- Width -->
           <label v-if="elementType === 'color'" class="w-full input">
             <span class="label">Width</span>
             <input v-model="width" type="text" placeholder="100" class="" />
@@ -150,6 +144,8 @@ function handleAddNewElement() {
               class=" input-sm w-full"
             />
           </label>
+
+          <!-- Text Content -->
           <label v-if="elementType === 'text'" class="w-full input">
             <span class="label">Content</span>
             <input
@@ -165,7 +161,7 @@ function handleAddNewElement() {
       </Modal>
     </div>
     <div v-if="elements" class="w-full h-screen">
-      <!--  relative-->
+
       <ElementItems
         v-for="element in elements"
         :key="element.id"
@@ -173,7 +169,7 @@ function handleAddNewElement() {
         :element="element"
       ></ElementItems>
     </div>
-    <p v-if="!elements">Wo sind die Elemente</p>
+    <p v-if="!elements">No elements exist for this board</p>
   </div>
 </template>
 

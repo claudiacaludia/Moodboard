@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { getFileUrl } from '@/pocketbase.js'
 import { useDraggable } from '@vueuse/core'
-import { useTemplateRef, ref, watch } from 'vue'
+import { useTemplateRef, ref } from 'vue'
 import { useBoards } from '@/useBoards.js'
 const { deleteElement, editElement } = useBoards()
 
@@ -20,15 +20,6 @@ const el = useTemplateRef<HTMLElement>('el')
 const startX = ref(props.element.x_position ?? 0)
 const startY = ref(props.element.y_position ?? 0)
 
-/*const { x, y, style } = useDraggable(el, {
-  initialValue: { x: startX.value, y: startY.value },
-})
-watch([x, y], ([newX, newY]) => {
-  editElement(props.element.id, {
-    x_position: Math.round(newX),
-    y_position: Math.round(newY)
-  });
-});*/
 
 const { x, y, style } = useDraggable(el, {
   initialValue: { x: startX.value, y: startY.value },
@@ -49,7 +40,6 @@ function handleDeleteElement() {
 
 <template>
   <div ref="el" :style="style" style="position: absolute" class="group relative">
-    <!--Image: -->
     <img
       draggable="false"
       v-if="element.type === 'image'"
@@ -57,7 +47,6 @@ function handleDeleteElement() {
       :style="` height: ${element.height ?? 150}px; `"
       class=""
     />
-    <!-- Color -->
     <div
       v-if="element.type === 'color'"
       :style="`
@@ -66,22 +55,17 @@ function handleDeleteElement() {
           width: ${element.width ?? 150}px;
           `"
     ></div>
-    <!-- Text -->
     <p
       v-if="element.type === 'text'"
       v-html="element.text"
       class="bg-[#fafafa] p-1 rounded"
       :style="`font-size: ${element.fontSize} ?? 16 px`"
     ></p>
-    <!-- Song -->
     <div v-if="element.type === 'song'" v-html="element.songUrl"></div>
-    <!--<iframe v-if="element.type === 'song'" style="border-radius:12px" :src="element.songUrl" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>-->
-
     <div
-      class="flex justify-between gap-2 px-1 opacity-0 group-hover:opacity-100 transition-opacity rounded-b absolute top-1 right-1"
+      class="flex justify-between gap-2 px-1 opacity-0 group-hover:opacity-100 transition-opacity rounded-b absolute top-1 left-1"
     >
-      <!-- Move Icon -->
-            <div class="bg-[#fafafa] hover:bg-stone-200 p-1 rounded">
+      <div class="bg-[#fafafa] hover:bg-stone-200 p-1 rounded">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
@@ -102,7 +86,6 @@ function handleDeleteElement() {
         </svg>
       </div>
 
-      <!--      <p class="text-stone-500 text-xs italic">{{ x }}, {{ y }}</p>-->
       <button @click="handleDeleteElement" class="bg-[#fafafa] hover:bg-stone-200 p-1 rounded">
         <svg
           xmlns="http://www.w3.org/2000/svg"
