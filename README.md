@@ -41,8 +41,3 @@ npm run lint
 ```sh
 pocketbase serve
 ```
-
-Pocketbase Anmeldedaten für meinen localhost
-
-Email: pemmer@gmail.com
-Passwort: secretsecret
