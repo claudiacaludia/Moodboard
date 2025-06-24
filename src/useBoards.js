@@ -12,9 +12,7 @@ export function useBoards() {
   const {currentUser} = useLogin();
 
   onMounted(async () => {
-    // Lade alle Boards (inkl. setBoard falls localStorage vorhanden)
     await fetchBoards();
-
     await pb.collection("elements").unsubscribe("*");
 
     await pb.collection("elements").subscribe("*", async function (elementEvent) {
@@ -44,7 +42,7 @@ export function useBoards() {
       //Inhalt laden
       elements.value = await pb.collection('elements').getFullList( {
         filter: ` board = "${boardId}"`,
-        expand: 'user' //TODO: brauchi des?
+        expand: 'user'
       });
     }
   }
@@ -74,8 +72,8 @@ export function useBoards() {
       title: title,
     };
     const { show } = useWebNotification({
-      title: 'Neues Moodboard erstellt!',
-      body: `Board "${createdBoard.title}" wurde erfolgreich angelegt.`,
+      title: 'New Cloud created!',
+      body: `Board "${createdBoard.title}" was successfully created.`,
       tag: 'new-board',
       renotify: true,
     });

@@ -171,5 +171,3 @@ function handleAddNewElement() {
     <p v-if="!elements">No elements exist for this board</p>
   </div>
 </template>
-
-<style scoped></style>
