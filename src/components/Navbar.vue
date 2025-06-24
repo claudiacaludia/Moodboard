@@ -8,7 +8,6 @@ const {fetchBoards, boards, setBoard, createBoard} = useBoards();
 const router = useRouter();
 
 const newBoardName = ref('');
-//TODO: Dropdown schließen bei klick außerhalb
 
 onMounted(() => {
   fetchBoards();

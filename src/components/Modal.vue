@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref, watch } from "vue";
 
 const props = defineProps({
   showOpenBtn: {
@@ -30,7 +30,6 @@ function handleOpen() {
 }
 
 function handleOutsideClick(event) {
-  // Schließt das Modal nur, wenn außerhalb der modal-box geklickt wurde
   if (event.target === dialog.value) {
     dialog.value.close();
     emit('close');

@@ -47,7 +47,7 @@ function handleAddNewElement() {
       alert('Text is mandatory for type=text');
       return;
     }
-  console.log("Color:",elementColor.value);
+
 
   createElement(xPos.value, yPos.value, height.value, width.value, elementType.value,
     elementText.value, elementColor.value, elementSong.value,  image, imageUrl.value);
@@ -157,6 +157,7 @@ function handleAddNewElement() {
           <button class="btn btn-secondary" @click="handleAddNewElement">Create Element</button>
         </div>
       </Modal>
+
     </div>
     <div v-if="elements" class="w-full h-screen">
 
