@@ -4,10 +4,8 @@ import ElementItems from '@/components/ElementItems.vue'
 import { useLogin } from '@/useLogin.js'
 import { ref } from 'vue'
 import Modal from '@/components/Modal.vue'
-import { useElements } from '@/useElements.js'
 
-const {currentBoard} = useBoards();
-const {elements, createElement} = useElements();
+const {currentBoard, elements, createElement} = useBoards();
 const {currentUser} = useLogin();
 
 const xPos = ref('200');
@@ -135,8 +133,8 @@ function handleAddNewElement() {
 
 
           <!-- Color -->
-          <label v-if="elementType === 'color'" class="w-full input">
-            <span class="label">Color Code</span>
+          <label v-if="elementType === 'color' || elementType === 'text'" class="w-full input">
+            <span class="label">Color</span>
             <input
               v-model="elementColor"
               type="color"

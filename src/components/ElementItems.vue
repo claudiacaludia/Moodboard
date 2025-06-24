@@ -2,7 +2,7 @@
 import { getFileUrl } from '@/pocketbase.js'
 import { useDraggable } from '@vueuse/core'
 import { useTemplateRef, ref } from 'vue'
-import { useBoards } from '@/useBoards.js'
+import {useBoards} from '@/useBoards'
 const { deleteElement, editElement } = useBoards()
 
 const props = defineProps({
@@ -59,7 +59,9 @@ function handleDeleteElement() {
       v-if="element.type === 'text'"
       v-html="element.text"
       class="bg-[#fafafa] p-1 rounded"
-      :style="`font-size: ${element.fontSize} ?? 16 px`"
+      :style="`
+      color: ${element.color ?? '#000000'};
+    `"
     ></p>
     <div v-if="element.type === 'song'" v-html="element.songUrl"></div>
     <div
