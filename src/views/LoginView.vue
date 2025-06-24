@@ -1,10 +1,12 @@
 <script setup>
 import {ref} from "vue";
 import {useLogin} from "@/useLogin.js";
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter();
+const route = useRoute();
 const {login} = useLogin();
+const registeredSuccess = ref(route.query.registered === 'true');
 
 const email = ref('');
 const password = ref('');
@@ -25,16 +27,21 @@ async function handleLogin() {
   }
 
 }
+function register() {
+  router.push('/register');
+}
 </script>
 
 <template>
   <section class="min-h-screen flex flex-col items-center justify-center bg-stone-100 px-4 background">
-
-      <h1 class="text-4xl font-bold leading-tight my-4 text-center">
-        Welcome back to <span class="text-blue-950"><br>MoodCloud</span>.
-      </h1>
+    <h1 class="text-4xl font-bold leading-tight my-4 text-center">
+      Welcome back to <span class="text-blue-950"><br>MoodCloud</span>.
+    </h1>
       <div class="bg-white backdrop-blur-sm border border-[#EADDC8]/20 text-black shadow-xl rounded-2xl p-8 w-full max-w-md">
-        <h2 class="text-2xl font-semibold mb-6">Log in</h2>
+        <h2 v-if="registeredSuccess" class="text-base text-emerald-600 mb-4">
+          Registration successful! <br><span class="text-black text-2xl">You can now log in.</span>
+        </h2>
+        <h2 v-if="!registeredSuccess" class="text-2xl font-semibold mb-6">Log in</h2>
 
         <label class="block mb-4">
           <span class="text-sm mb-1 block">Email</span>
@@ -51,6 +58,8 @@ async function handleLogin() {
         <button class="btn w-full btn-primary hover:bg-blue-950" @click="handleLogin">
           Log In
         </button>
+        <div class="divider">OR</div>
+        <div class="btn btn-primary btn-outline grid place-items-center" @click="register">Register</div>
       </div>
   </section>
 </template>

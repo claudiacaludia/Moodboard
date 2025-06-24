@@ -32,13 +32,18 @@ export function useLogin() {
         console.log('User logged out', currentUser.value);
     }
 
-    const register = () => {
-        // TODO add registering as a user
-        // create user in PB -> triggers E-Mail verification
-        alert('register: Implement me')
+    const register = async (email, name, password, passwordRepeat) => {
+      const newUser = {
+        email: email,
+        name: name,
+        password: password,
+        passwordConfirm: passwordRepeat,
+      }
+      await pb.collection('users').create(newUser);
+      console.log("New user", newUser);
     }
 
-    const isLoggedIn = computed(() => !!currentUser.value);
+  const isLoggedIn = computed(() => !!currentUser.value);
 
     return {
         isLoggedIn,
